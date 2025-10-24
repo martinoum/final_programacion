@@ -12,11 +12,15 @@ def vinos_lista(request):
     vinos = Vino.objects.all() #Traemos todos los vinos de la base de datos
     return render(request, 'vinos.html', {'vinos': vinos})
 
-def bodega_detalle(request):
-    return render(request, 'bodega_Detalle.html')
+def bodega_detalle(request,id):
+    bodega_por_id = Bodega.objects.get(id=id) #Traemos la bodega con el id recibido
+    print(bodega_por_id)
+    return render(request, 'bodega_Detalle.html', {'bodega': bodega_por_id})
 
-def vino_detalle(request):
-    return render(request, 'vino_Detalle.html')
+def vino_detalle(request,id):
+    vino_por_id = Vino.objects.get(id=id) #Traemos el vino con el id recibido
+    print(vino_por_id)
+    return render(request, 'vino_Detalle.html', {'vino': vino_por_id})
 
 def administrar(request):
     return render(request, 'administrar.html')

@@ -28,7 +28,7 @@
             <p>Tel: <a href="tel:{{ bodega.telefono }}" class="text-amber-600 hover:underline">{{ bodega.telefono }}</a></p>
             <p>Email: <a href="mailto:{{ bodega.email }}" class="text-amber-600 hover:underline">{{ bodega.email }}</a></p>
           </div>
-          <a href="{{ bodega.sitio }}" class="inline-block px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700" target="_blank">Sitio</a>
+          <a href="{% url "bodega_detalle" bodega.id %}" class="inline-block px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700" target="_blank">Ver Bodega</a>
         </div>
       </div>
     </article>
