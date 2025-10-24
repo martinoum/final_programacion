@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<!-- Seccion Bodega -->
+<section class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="relative h-64 overflow-hidden rounded-lg shadow md:h-96">
+        <img
+          src="{% static 'img/bodega1.png' %}"
+          alt="Vinos"
+          class="object-cover w-full h-full"
+        />
+        <a href="#" class="absolute inset-0 flex items-center justify-center">
+          <button
+            class="px-6 py-2 font-semibold text-gray-900 transition rounded-full shadow bg-white/90 hover:scale-105"
+            aria-label="Ver"
+          >
+            VER
+          </button>
+        </a>
+      </div>
+
+      <div class="flex flex-col justify-center p-6 bg-white rounded-lg shadow md:p-10">
+        <h1 class="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">Conocé Nuestros Productos</h1>
+        <p class="mb-6 text-gray-600">
+          Descubrí una cuidada selección de vinos, desde clásicos hasta propuestas
+          artesanales. Encontrá el sabor ideal para cada ocasión.
+        </p>
+        <div>
+            <a
+            href="#"
+            class="inline-block px-6 py-3 font-semibold text-white transition rounded-lg shadow bg-amber-600 hover:bg-amber-700"
+            >
+            Ver productos
+        </a>
+    </div>
+</div>
+</section>
+
+<!-- Seccion Vinos -->
+<section class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="flex flex-col justify-center p-6 bg-white rounded-lg shadow md:p-10">
+      <h1 class="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">Conocé Nuestros Productos</h1>
+      <p class="mb-6 text-gray-600">
+        Descubrí una cuidada selección de vinos, desde clásicos hasta propuestas
+        artesanales. Encontrá el sabor ideal para cada ocasión.
+      </p>
+      <div>
+        <a
+          href="#"
+          class="inline-block px-6 py-3 font-semibold text-white transition rounded-lg shadow bg-amber-600 hover:bg-amber-700"
+        >
+          Ver productos
+        </a>
+      </div>
+    </div>
+
+    <div class="relative h-64 overflow-hidden rounded-lg shadow md:h-96">
+        <img
+          src="{% static 'img/botella_vino.png' %}"
+          alt="Vinos"
+          class="object-cover w-full h-full"
+        />
+        <a href="#" class="absolute inset-0 flex items-center justify-center">
+          <button
+            class="px-6 py-2 font-semibold text-gray-900 transition rounded-full shadow bg-white/90 hover:scale-105"
+            aria-label="Ver"
+          >
+            VER
+          </button>
+        </a>
+      </div>
+
+    </section>
+
+{% endblock %}

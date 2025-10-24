@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="min-h-screen mx-auto font-medium bg-white max-w-7xl"
+    style="font-family: 'Work Sans', sans-serif"
+  >
+    <header>
+      <nav class="p-4 mb-12 bg-white border-b-[#f4f0f0] shadow-sm">
+        <div class="container flex items-center justify-between mx-auto">
+          <img src="{% static "img/bodega_logo.png" %}" alt="Bodega Logo"
+          class="w-auto h-10">
+
+          <ul class="flex space-x-4">
+            <li
+              class="text-black transition duration-300 transform hover:scale-95"
+            >
+              <a href="#">Home</a>
+            </li>
+            <li
+              class="text-black transition duration-300 transform hover:scale-95"
+            >
+              <a href="#">Administrar</a>
+            </li>
+            <li
+              class="text-black transition duration-300 transform hover:scale-95"
+            >
+              <a href="#">Sobre el proyecto</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>{% block content%}  {% endblock content%}</main>
+
+    <footer class="mx-auto mt-12 border-t bg-white border-t-[#f4f0f0] shadow-t-sm flex items-center justify-center flex-col">
+      <div
+        class="container flex items-center justify-center gap-4 p-4 mx-auto"
+      >
+        <!--Github-->
+        <a
+          href="https://github.com/martinoum"
+          class="p-2 transition duration-300 transform bg-[#2f2f31] rounded-full hover:scale-95"
+        >
+          <svg width="28" height="28">
+            <use xlink:href="/static/sprite.svg#github" />
+          </svg>
+        </a>
+
+        <!--Instagram-->
+        <a
+          href="https://www.instagram.com/uvillamartino/"
+          class="p-2 transition duration-300 transform rounded-full hover:scale-95"
+          style="
+            background: linear-gradient(
+              45deg,
+              #405de6,
+              #5851db,
+              #833ab4,
+              #c13584,
+              #e1306c,
+              #fd1d1d
+            );
+          "
+        >
+          <svg width="28" height="28">
+            <use xlink:href="/static/sprite.svg#instagram" />
+          </svg>
+        </a>
+
+        <!--LinkedIn-->
+        <a
+          href="https://www.linkedin.com/in/martino-uvilla-morales-35b843213/"
+          class="p-2 transition duration-300 transform bg-[#ebebeb] rounded-full hover:scale-95"
+        >
+          <svg width="28" height="28">
+            <use xlink:href="/static/sprite.svg#linkedin" />
+          </svg>
+        </a>
+      </div>
+      <p class="justify-center mx-auto items center">Creado por: Martino Uvilla</p>
+    </footer>
+  </body>
+</html>
