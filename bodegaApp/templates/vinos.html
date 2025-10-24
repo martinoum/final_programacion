@@ -1,30 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-  Vinos
-{% endblock %}
+{% block title %} Vinos {% endblock %}
 
 {% block content %}
   <section class="container px-4 py-12 mx-auto">
   <h1 class="mb-8 text-3xl font-bold">Nuestros Vinos</h1>
 
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    <!-- Wine Card 1 -->
+    {% for vino in vinos %}
+    <!-- Wine Card -->
     <article class="overflow-hidden bg-white rounded-lg shadow">
-      <img src="https://via.placeholder.com/800x500?text=Malbec+Reserva" alt="Malbec Reserva" class="object-cover w-full h-48" />
+      
+      {% if vino.imagen%}
+      <img src="{{ vino.imagen.url }}" alt="{{ vino.nombre }}" class="object-contain w-full h-48" />
+      {% else %}
+      <img src="{% static 'img/botella2.png' %}" alt="Vino Malbec" class="object-cover w-full h-48" />
+      {% endif %}
+      
       <div class="p-6">
-        <h2 class="mb-1 text-xl font-semibold">Malbec Reserva</h2>
-        <p class="mb-1 text-sm text-gray-500"><strong>Bodega:</strong> Bodega El Mirador</p>
-        <p class="mb-1 text-sm text-gray-500"><strong>Tipo:</strong> Tinto · <strong>Varietal:</strong> Malbec</p>
-        <p class="mb-2 font-semibold text-amber-600">$1,950.00</p>
-        <p class="mb-4 text-gray-700">Crianza 12 meses en roble francés. Notas a ciruela, chocolate y especias.</p>
+        <h2 class="mb-1 text-xl font-semibold">{{ vino.nombre }}</h2>
+        <p class="mb-1 text-sm text-gray-500"><strong>Bodega:</strong>{{ vino.bodega }}</p>
+        <!-- {{ vino.get_tipo_display }} devuelve el valor legible del choice (en este caso es igual, pero si tuvieras ('T', 'Tinto'), esto devolvería "Tinto" en lugar de "T") -->
+        <p class="mb-1 text-sm text-gray-500"><strong>Tipo:</strong>{{ vino.get_tipo_display }}  <strong>Varietal:</strong> {{ vino.varietal }}</p>
+        <p class="mb-2 font-semibold text-amber-600">${{ vino.precio }}</p>
+        <p class="mb-4 text-gray-700"> {{ vino.descripcion}} </p>
         <div class="flex items-center justify-between">
           <a href="#" class="inline-block px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700">Ver vino</a>
-          <a href="#" class="text-sm text-gray-600 hover:underline">Ver bodega</a>
+          <a href="{% url "bodegas_lista" %}" class="text-sm text-gray-600 hover:underline">Ver bodega</a>
         </div>
       </div>
     </article>
+    {% endfor %}
   </div>
 </section>
 {% endblock %}

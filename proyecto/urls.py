@@ -16,16 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from bodegaApp.views import formulario_vino, inicio, bodegas, vinos, bodega_detalle, vino_detalle, administrar, formulario_bodega
+from bodegaApp.views import about, formulario_vino, inicio, bodegas_lista, vinos_lista, bodega_detalle, vino_detalle, administrar, formulario_bodega
+
+from django.conf import settings #PENDIENTE notion
+from django.contrib.staticfiles.urls import static #PENDIENTE notion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name='inicio'),
-    path('bodegas/', bodegas, name='bodegas'),
-    path('vinos/',vinos, name='vinos'),
+    path('bodegas_lista/', bodegas_lista, name='bodegas_lista'),
+    path('vinos_lista/', vinos_lista, name='vinos_lista'),
     path('bodega/detalle', bodega_detalle, name='bodega_detalle'),
     path('vino/detalle', vino_detalle, name='vino_detalle'),
     path('administrar/', administrar, name='administrar'),
     path('bodega/formulario/', formulario_bodega, name='formulario_bodega'),
     path('vino/formulario/', formulario_vino, name='formulario_vino'),
-]
+    path('about/', about, name='about'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #PENDIENTE notion
