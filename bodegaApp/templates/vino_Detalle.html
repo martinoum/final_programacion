@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Vino Detalle {% endblock %}
+{% block content %}
+<section class="container px-4 py-12 mx-auto">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <!-- Imagen -->
+    <div class="md:col-span-1">
+      <img src="https://via.placeholder.com/800x800?text=Imagen+Vino" alt="Imagen del vino" class="object-cover w-full rounded-lg shadow h-80">
+      <div class="mt-4 space-y-1 text-sm text-gray-600">
+        <p><strong>Precio:</strong> <span class="font-semibold text-amber-600">$1.950</span></p>
+        <p><strong>Tipo:</strong> Tinto</p>
+        <p><strong>Varietal:</strong> Malbec</p>
+      </div>
+    </div>
+
+    <!-- Detalle principal -->
+    <div class="md:col-span-2">
+      <h1 class="mb-2 text-3xl font-bold">Malbec Reserva</h1>
+      <p class="mb-4 text-sm text-gray-500"><strong>Bodega:</strong> Bodega El Mirador · <a href="#" class="text-amber-600 hover:underline">Ver bodega</a></p>
+
+      <h2 class="mb-3 text-xl font-semibold">Descripción</h2>
+      <p class="mb-6 text-gray-700">Crianza 12 meses en roble francés. Notas de ciruela madura, cacao y especias. Cuerpo medio-alto, taninos redondos y final persistente.</p>
+
+      <div class="grid grid-cols-1 gap-4 mb-6 sm:grid-cols-2">
+        <div class="p-4 bg-white rounded-lg shadow">
+          <h3 class="font-semibold">Detalles de cata</h3>
+          <p class="text-sm text-gray-600">Aroma: frutas negras, vainilla y toques tostados.</p>
+          <p class="text-sm text-gray-600">Maridaje: carnes rojas, guisos y quesos curados.</p>
+        </div>
+        <div class="p-4 bg-white rounded-lg shadow">
+          <h3 class="font-semibold">Ficha técnica</h3>
+          <p class="text-sm text-gray-600">Graduación: 14.5% · Crianza: 12 meses en roble</p>
+          <p class="text-sm text-gray-600">Stock disponible: Alto</p>
+        </div>
+      </div>
+
+      <div class="flex items-center">
+        <a href="#" class="inline-block px-6 py-3 text-white rounded-lg shadow bg-amber-600 hover:bg-amber-700">Comprar</a>
+        <a href="#" class="inline-block px-6 py-3 ml-4 border border-gray-300 rounded-lg hover:bg-gray-50">Reservar degustación</a>
+        <a href="#" class="ml-auto text-sm text-gray-600 hover:underline">Compartir</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

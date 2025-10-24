@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %} Bodegas {% endblock %} 
+
+{% block content %}
+
+<section class="container px-4 py-12 mx-auto">
+  <h1 class="mb-8 text-3xl font-bold">Nuestras Bodegas</h1>
+
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- Card 1 -->
+    <article class="overflow-hidden bg-white rounded-lg shadow">
+      <img src="https://via.placeholder.com/800x500?text=Bodega+El+Mirador" alt="Bodega El Mirador" class="object-cover w-full h-48">
+      <div class="p-6">
+        <h2 class="mb-1 text-xl font-semibold">Bodega El Mirador</h2>
+        <p class="mb-2 text-sm text-gray-500"><strong>Ubicación:</strong> Valle de Uco, Mendoza</p>
+        <p class="mb-4 text-gray-700">Bodega familiar enfocada en Malbecs intensos y crianza en roble. Visitas con degustación y recorridos por viñedo.</p>
+        <div class="flex items-center justify-between">
+          <div class="text-sm text-gray-600">
+            <p>Tel: <a href="tel:+541123456789" class="text-amber-600 hover:underline">+54 11 2345 6789</a></p>
+            <p>Email: <a href="mailto:info@elmirador.com" class="text-amber-600 hover:underline">info@elmirador.com</a></p>
+          </div>
+          <a href="https://elmirador.example" class="inline-block px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700">Sitio</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+{% endblock content %}

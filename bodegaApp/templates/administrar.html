@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Gestión {% endblock %}
+
+{% block content %}
+<section class="container px-4 py-12 mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold">Bodegas</h1>
+    <div>
+      <button onclick="location.href='#addBodega'" class="px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700">Agregar Bodega</button>
+    </div>
+  </div>
+
+  <div class="mb-10 overflow-x-auto bg-white rounded-lg shadow">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Nombre</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Ubicación</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Teléfono</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Email</th>
+          <th class="px-6 py-3 text-xs font-medium text-center text-gray-500 uppercase">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <!-- Ejemplo fila -->
+        <tr>
+          <td class="px-6 py-4 text-sm text-gray-700">1</td>
+          <td class="px-6 py-4 text-sm font-semibold text-gray-900">Bodega El Mirador</td>
+          <td class="px-6 py-4 text-sm text-gray-700">Valle de Uco, Mendoza</td>
+          <td class="px-6 py-4 text-sm text-gray-700">+54 261 234 5678</td>
+          <td class="px-6 py-4 text-sm text-amber-600">info@elmirador.com</td>
+          <td class="px-6 py-4 text-sm text-center">
+            <button onclick="editarBodega(1)" class="px-3 py-1 mr-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
+            <button onclick="confirmEliminar('bodega',1)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+          </td>
+        </tr>
+        <!-- Más filas estáticas de ejemplo -->
+        <tr>
+          <td class="px-6 py-4 text-sm text-gray-700">2</td>
+          <td class="px-6 py-4 text-sm font-semibold text-gray-900">Bodega La Cumbre</td>
+          <td class="px-6 py-4 text-sm text-gray-700">Luján de Cuyo</td>
+          <td class="px-6 py-4 text-sm text-gray-700">+54 9 261 123 456</td>
+          <td class="px-6 py-4 text-sm text-amber-600">contacto@lacumbre.com</td>
+          <td class="px-6 py-4 text-sm text-center">
+            <button onclick="editarBodega(2)" class="px-3 py-1 mr-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
+            <button onclick="confirmEliminar('bodega',2)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold">Vinos</h1>
+    <div>
+      <button onclick="location.href='#addVino'" class="px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700">Agregar Vino</button>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto bg-white rounded-lg shadow">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Nombre</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Bodega</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Tipo</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Varietal</th>
+          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Precio</th>
+          <th class="px-6 py-3 text-xs font-medium text-center text-gray-500 uppercase">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <!-- Ejemplo vino -->
+        <tr>
+          <td class="px-6 py-4 text-sm text-gray-700">1</td>
+          <td class="px-6 py-4 text-sm font-semibold text-gray-900">Malbec Reserva</td>
+          <td class="px-6 py-4 text-sm text-gray-700">Bodega El Mirador</td>
+          <td class="px-6 py-4 text-sm text-gray-700">Tinto</td>
+          <td class="px-6 py-4 text-sm text-gray-700">Malbec</td>
+          <td class="px-6 py-4 text-sm font-semibold text-amber-600">$1.950</td>
+          <td class="px-6 py-4 text-sm text-center">
+            <button onclick="editarVino(1)" class="px-3 py-1 mr-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
+            <button onclick="confirmEliminar('vino',1)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="px-6 py-4 text-sm text-gray-700">2</td>
+          <td class="px-6 py-4 text-sm font-semibold text-gray-900">Chardonnay Altura</td>
+          <td class="px-6 py-4 text-sm text-gray-700">Bodega La Cumbre</td>
+          <td class="px-6 py-4 text-sm text-gray-700">Blanco</td>
+          <td class="px-6 py-4 text-sm text-gray-700">Chardonnay</td>
+          <td class="px-6 py-4 text-sm font-semibold text-amber-600">$2.450</td>
+          <td class="px-6 py-4 text-sm text-center">
+            <button onclick="editarVino(2)" class="px-3 py-1 mr-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
+            <button onclick="confirmEliminar('vino',2)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% endblock %}

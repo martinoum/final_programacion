@@ -6,6 +6,27 @@
 
 {% block content %}
 
+<!-- Seccion Hero -->
+<section class="relative mb-12">
+  <div class="relative flex items-center justify-center w-full mx-auto overflow-hidden h-[500px]">
+    <img
+      src="{% static 'img/vinedos.jpg' %}"
+      alt="Viñedos de Mendoza"
+      class="object-cover w-full h-full transition-all duration-300 brightness-50"
+    />
+
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+      <h1 class="mb-4 text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl drop-shadow-lg">
+        Bodegas de Mendoza
+      </h1>
+      <h2 class="max-w-3xl px-4 text-xl font-medium md:text-2xl drop-shadow-md">
+        Descubre las mejores Bodegas y Vinos en el Corazón de Argentina
+      </h2>
+    </div>
+  </div>
+</section>
+
+
 <!-- Seccion Bodega -->
 <section class="grid grid-cols-1 gap-6 md:grid-cols-2">
       <div class="relative h-64 overflow-hidden rounded-lg shadow md:h-96">
@@ -25,43 +46,46 @@
       </div>
 
       <div class="flex flex-col justify-center p-6 bg-white rounded-lg shadow md:p-10">
-        <h1 class="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">Conocé Nuestros Productos</h1>
+        <h1 class="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">Conocé Nuestras Bodegas</h1>
         <p class="mb-6 text-gray-600">
-          Descubrí una cuidada selección de vinos, desde clásicos hasta propuestas
-          artesanales. Encontrá el sabor ideal para cada ocasión.
+          Explorá nuestras bodegas Premium, donde la tradición y la innovación se 
+          encuentran para crear vinos excepcionales. Cada bodega cuenta con años de 
+          experiencia en la elaboración de vinos de alta calidad, utilizando las 
+          mejores uvas de nuestros viñedos seleccionados.
         </p>
         <div>
             <a
             href="#"
             class="inline-block px-6 py-3 font-semibold text-white transition rounded-lg shadow bg-amber-600 hover:bg-amber-700"
             >
-            Ver productos
+            Ver Bodegas
         </a>
     </div>
 </div>
 </section>
-
 <!-- Seccion Vinos -->
-<section class="grid grid-cols-1 gap-6 md:grid-cols-2">
+<section class="grid grid-cols-1 gap-6 mt-10 md:grid-cols-2">
     <div class="flex flex-col justify-center p-6 bg-white rounded-lg shadow md:p-10">
-      <h1 class="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">Conocé Nuestros Productos</h1>
+      <h1 class="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">Conocé Nuestros Vinos</h1>
       <p class="mb-6 text-gray-600">
-        Descubrí una cuidada selección de vinos, desde clásicos hasta propuestas
-        artesanales. Encontrá el sabor ideal para cada ocasión.
+        Descubrí nuestra exclusiva colección de vinos premium, desde varietales clásicos 
+        hasta ediciones limitadas. Cada botella representa la pasión por la vinicultura, 
+        con aromas y sabores únicos que cautivan los sentidos. Encontrá el vino perfecto 
+        para elevar cada momento especial.
       </p>
       <div>
         <a
           href="#"
-          class="inline-block px-6 py-3 font-semibold text-white transition rounded-lg shadow bg-amber-600 hover:bg-amber-700"
+          class="inline-block px-6 py-3 font-semibold text-white transition bg-red-600 rounded-lg shadow hover:bg-red-800"
         >
-          Ver productos
+          Ver Vinos
         </a>
       </div>
     </div>
 
     <div class="relative h-64 overflow-hidden rounded-lg shadow md:h-96">
         <img
-          src="{% static 'img/botella_vino.png' %}"
+          src="{% static 'img/botella2.png' %}"
           alt="Vinos"
           class="object-cover w-full h-full"
         />

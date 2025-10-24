@@ -16,9 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from bodegaApp.views import inicio
+from bodegaApp.views import formulario_vino, inicio, bodegas, vinos, bodega_detalle, vino_detalle, administrar, formulario_bodega
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name='inicio'),
+    path('bodegas/', bodegas, name='bodegas'),
+    path('vinos/',vinos, name='vinos'),
+    path('bodega/detalle', bodega_detalle, name='bodega_detalle'),
+    path('vino/detalle', vino_detalle, name='vino_detalle'),
+    path('administrar/', administrar, name='administrar'),
+    path('bodega/formulario/', formulario_bodega, name='formulario_bodega'),
+    path('vino/formulario/', formulario_vino, name='formulario_vino'),
 ]
