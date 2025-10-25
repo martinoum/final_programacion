@@ -23,7 +23,9 @@ def vino_detalle(request,id):
     return render(request, 'vino_Detalle.html', {'vino': vino_por_id})
 
 def administrar(request):
-    return render(request, 'administrar.html')
+    bodegas = Bodega.objects.all()
+    vinos = Vino.objects.all()
+    return render(request, 'administrar.html', {'bodegas': bodegas, 'vinos': vinos})
 
 def formulario_bodega(request):
     return render(request, 'bodega_form.html')

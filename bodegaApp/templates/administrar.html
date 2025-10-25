@@ -11,43 +11,59 @@
     </div>
   </div>
 
-  <div class="mb-10 overflow-x-auto bg-white rounded-lg shadow">
+ <div class="mb-10 overflow-x-auto bg-white rounded-lg shadow">
     <table class="min-w-full divide-y divide-gray-200">
+      <caption class="sr-only">Listado de bodegas</caption>
       <thead class="bg-gray-50">
         <tr>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Nombre</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Ubicación</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Teléfono</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Email</th>
-          <th class="px-6 py-3 text-xs font-medium text-center text-gray-500 uppercase">Acciones</th>
+          <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
+          <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Nombre</th>
+          <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Ubicación</th>
+          <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Contacto</th>
+          <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Sitio</th>
+          <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Imagen</th>
+          <th class="px-4 py-3 text-xs font-medium text-center text-gray-500 uppercase">Acciones</th>
         </tr>
       </thead>
+
       <tbody class="bg-white divide-y divide-gray-200">
-        <!-- Ejemplo fila -->
+        {% for bodega in bodegas %}
         <tr>
-          <td class="px-6 py-4 text-sm text-gray-700">1</td>
-          <td class="px-6 py-4 text-sm font-semibold text-gray-900">Bodega El Mirador</td>
-          <td class="px-6 py-4 text-sm text-gray-700">Valle de Uco, Mendoza</td>
-          <td class="px-6 py-4 text-sm text-gray-700">+54 261 234 5678</td>
-          <td class="px-6 py-4 text-sm text-amber-600">info@elmirador.com</td>
-          <td class="px-6 py-4 text-sm text-center">
-            <button onclick="editarBodega(1)" class="px-3 py-1 mr-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
-            <button onclick="confirmEliminar('bodega',1)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+          <td class="px-4 py-4 text-sm text-gray-700">{{ bodega.id }}</td>
+          <td class="px-4 py-4 text-sm font-semibold text-gray-900">{{ bodega.nombre }}</td>
+          <td class="px-4 py-4 text-sm text-gray-700">{{ bodega.ubicacion }}<br><span class="text-xs text-gray-500">{{ bodega.direccion }}</span></td>
+          <td class="px-4 py-4 text-sm text-gray-700">
+            <div class="space-y-1">
+              <div class="text-sm">Tel: <a href="tel:{{ bodega.telefono }}" class="text-amber-600 hover:underline">{{ bodega.telefono }}</a></div>
+              <div class="text-sm">Email: <a href="mailto:{{ bodega.email }}" class="text-amber-600 hover:underline">{{ bodega.email }}</a></div>
+            </div>
+          </td>
+          <td class="px-4 py-4 text-sm text-gray-700">
+            {% if bodega.sitio %}
+            <a href="{{ bodega.sitio }}" target="_blank" rel="noopener" class="text-amber-600 hover:underline">Visitar</a>
+            {% else %}
+            <span class="text-xs text-gray-400">—</span>
+            {% endif %}
+          </td>
+          <td class="px-4 py-4 text-sm">
+            {% if bodega.imagen %}
+            <img src="{{ bodega.imagen.url }}" alt="{{ bodega.nombre }}" class="object-cover w-32 h-16 rounded">
+            {% else %}
+            <img src="{% static 'img/bodega1.png' %}" alt="Sin imagen" class="object-cover w-32 h-16 rounded opacity-60">
+            {% endif %}
+          </td>
+          <td class="px-4 py-4 text-sm text-center">
+            <div class="inline-flex items-center gap-2">
+              <button onclick="editarBodega({{ bodega.id }})" class="px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
+              <button onclick="confirmEliminar('bodega', {{ bodega.id }})" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+            </div>
           </td>
         </tr>
-        <!-- Más filas estáticas de ejemplo -->
+        {% empty %}
         <tr>
-          <td class="px-6 py-4 text-sm text-gray-700">2</td>
-          <td class="px-6 py-4 text-sm font-semibold text-gray-900">Bodega La Cumbre</td>
-          <td class="px-6 py-4 text-sm text-gray-700">Luján de Cuyo</td>
-          <td class="px-6 py-4 text-sm text-gray-700">+54 9 261 123 456</td>
-          <td class="px-6 py-4 text-sm text-amber-600">contacto@lacumbre.com</td>
-          <td class="px-6 py-4 text-sm text-center">
-            <button onclick="editarBodega(2)" class="px-3 py-1 mr-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
-            <button onclick="confirmEliminar('bodega',2)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
-          </td>
+          <td colspan="7" class="px-4 py-6 text-center text-gray-500">No hay bodegas registradas.</td>
         </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -60,48 +76,54 @@
   </div>
 
   <div class="overflow-x-auto bg-white rounded-lg shadow">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
-        <tr>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Nombre</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Bodega</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Tipo</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Varietal</th>
-          <th class="px-6 py-3 text-xs font-medium text-left text-gray-500 uppercase">Precio</th>
-          <th class="px-6 py-3 text-xs font-medium text-center text-gray-500 uppercase">Acciones</th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <!-- Ejemplo vino -->
-        <tr>
-          <td class="px-6 py-4 text-sm text-gray-700">1</td>
-          <td class="px-6 py-4 text-sm font-semibold text-gray-900">Malbec Reserva</td>
-          <td class="px-6 py-4 text-sm text-gray-700">Bodega El Mirador</td>
-          <td class="px-6 py-4 text-sm text-gray-700">Tinto</td>
-          <td class="px-6 py-4 text-sm text-gray-700">Malbec</td>
-          <td class="px-6 py-4 text-sm font-semibold text-amber-600">$1.950</td>
-          <td class="px-6 py-4 text-sm text-center">
-            <button onclick="editarVino(1)" class="px-3 py-1 mr-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
-            <button onclick="confirmEliminar('vino',1)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="px-6 py-4 text-sm text-gray-700">2</td>
-          <td class="px-6 py-4 text-sm font-semibold text-gray-900">Chardonnay Altura</td>
-          <td class="px-6 py-4 text-sm text-gray-700">Bodega La Cumbre</td>
-          <td class="px-6 py-4 text-sm text-gray-700">Blanco</td>
-          <td class="px-6 py-4 text-sm text-gray-700">Chardonnay</td>
-          <td class="px-6 py-4 text-sm font-semibold text-amber-600">$2.450</td>
-          <td class="px-6 py-4 text-sm text-center">
-            <button onclick="editarVino(2)" class="px-3 py-1 mr-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
-            <button onclick="confirmEliminar('vino',2)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="min-w-full divide-y divide-gray-200">
+    <caption class="sr-only">Listado de vinos</caption>
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
+        <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Nombre</th>
+        <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Bodega</th>
+        <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Tipo/Varietal</th>
+        <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Precio</th>
+        <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Imagen</th>
+        <th class="px-4 py-3 text-xs font-medium text-center text-gray-500 uppercase">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      {% for vino in vinos %}
+      <tr>
+        <td class="px-4 py-4 text-sm text-gray-700">{{ vino.id }}</td>
+        <td class="px-4 py-4 text-sm font-semibold text-gray-900">{{ vino.nombre }}</td>
+        <td class="px-4 py-4 text-sm text-gray-700">{{ vino.bodega.nombre }}</td>
+        <td class="px-4 py-4 text-sm text-gray-700">
+          {{ vino.get_tipo_display }}<br>
+          <span class="text-xs text-gray-500">{{ vino.varietal }}</span>
+        </td>
+        <td class="px-4 py-4 text-sm font-semibold text-amber-600">${{ vino.precio }}</td>
+        <td class="px-4 py-4 text-sm">
+          {% if vino.imagen %}
+          <img src="{{ vino.imagen.url }}" alt="{{ vino.nombre }}" class="object-cover w-32 h-16 rounded">
+          {% else %}
+          <img src="{% static 'img/botella2.png' %}" alt="Sin imagen" class="object-cover w-32 h-16 rounded opacity-60">
+          {% endif %}
+        </td>
+        <td class="px-4 py-4 text-sm text-center">
+          <div class="inline-flex items-center gap-2">
+            <button onclick="editarVino({{ vino.id }})" class="px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
+            <button onclick="confirmEliminar('vino', {{ vino.id }})" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="7" class="px-4 py-6 text-center text-gray-500">No hay vinos registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 </section>
+
+
 
 {% endblock %}
