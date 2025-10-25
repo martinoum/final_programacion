@@ -7,7 +7,7 @@
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold">Bodegas</h1>
     <div>
-      <button onclick="location.href='#addBodega'" class="px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700">Agregar Bodega</button>
+      <button class="px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700"><a href="{% url "agregar_bodega" %}">Agregar Bodega</a></button>
     </div>
   </div>
 
@@ -54,8 +54,10 @@
           </td>
           <td class="px-4 py-4 text-sm text-center">
             <div class="inline-flex items-center gap-2">
-              <button onclick="editarBodega({{ bodega.id }})" class="px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
-              <button onclick="confirmEliminar('bodega', {{ bodega.id }})" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+              <button class="px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">
+                <a href="{% url "editar_bodega" bodega.id %}">Editar</a></button>
+              <button class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">
+                <a href="{% url "eliminar_bodega" bodega.id %}">Eliminar</a></button>
             </div>
           </td>
         </tr>
@@ -102,7 +104,7 @@
         <td class="px-4 py-4 text-sm font-semibold text-amber-600">${{ vino.precio }}</td>
         <td class="px-4 py-4 text-sm">
           {% if vino.imagen %}
-          <img src="{{ vino.imagen.url }}" alt="{{ vino.nombre }}" class="object-cover w-32 h-16 rounded">
+          <img src="{{ vino.imagen.url }}" alt="{{ vino.nombre }}" class="object-contain w-32 h-16 rounded">
           {% else %}
           <img src="{% static 'img/botella2.png' %}" alt="Sin imagen" class="object-cover w-32 h-16 rounded opacity-60">
           {% endif %}

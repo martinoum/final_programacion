@@ -15,6 +15,10 @@ class Bodega(models.Model):
 #Es un método especial de Python que define cómo se muestra el objeto cuando lo convertís a string.
     def __str__(self):  
         return self.nombre
+# Elimina el archivo físico de la imagen del servidor (/imagenes/)
+    def delete(self, using=None, keep_parents=False):
+        self.imagen.storage.delete(self.imagen.name)
+        super().delete()
 class Vino(models.Model):
     
     # ('valor_guardado_en_bd', 'Texto que ve el usuario')
@@ -37,3 +41,7 @@ class Vino(models.Model):
     
     def __str__(self):
         return f"{self.nombre} - {self.bodega.nombre}"
+
+    def delete(self, using=None, keep_parents=False):
+        self.imagen.storage.delete(self.imagen.name)
+        super().delete()

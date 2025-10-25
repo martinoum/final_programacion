@@ -1,85 +1,178 @@
-{% extends "base.html" %}
+<form
+  class="max-w-3xl p-6 mx-auto bg-white rounded-lg shadow"
+  action=""
+  method="post"
+  enctype="multipart/form-data"
+  novalidate
+>
 
-{% block title%}  {% endblock %}
+{% csrf_token %}
 
-{% block content %}
-<form id="form-add-bodega" class="max-w-3xl p-6 mx-auto bg-white rounded-lg shadow" action="#" method="post" enctype="multipart/form-data" novalidate>
   <!-- Nombre -->
   <div class="mb-4">
-    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre *</label>
-    <input id="nombre" name="nombre" type="text" maxlength="200" required
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-           placeholder="Nombre de la bodega" />
+    <label for="nombre" class="block text-sm font-medium text-gray-700"
+      >Nombre *</label
+    >
+    <input
+      name="nombre"
+      type="text"
+      maxlength="200"
+      required
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="Nombre de la bodega"
+      value = "{{ formulario.nombre.value | default:''}}"
+    />
   </div>
 
   <!-- Dirección -->
   <div class="mb-4">
-    <label for="direccion" class="block text-sm font-medium text-gray-700">Dirección *</label>
-    <input id="direccion" name="direccion" type="text" maxlength="300" required
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-           placeholder="Calle, número, localidad" />
+    <label for="direccion" class="block text-sm font-medium text-gray-700"
+      >Dirección *</label
+    >
+    <input
+      name="direccion"
+      type="text"
+      maxlength="300"
+      required
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="Calle, número, localidad"
+      value = "{{ formulario.direccion.value | default:''}}"
+    />
   </div>
 
   <!-- Ubicación (campo corto) -->
   <div class="mb-4">
-    <label for="ubicacion" class="block text-sm font-medium text-gray-700">Ubicación *</label>
-    <input id="ubicacion" name="ubicacion" type="text" maxlength="200" required
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-           placeholder="Ej: Valle de Uco, Mendoza" />
+    <label for="ubicacion" class="block text-sm font-medium text-gray-700"
+      >Ubicación *</label
+    >
+    <input
+      name="ubicacion"
+      type="text"
+      maxlength="200"
+      required
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="Ej: Valle de Uco, Mendoza"
+      value = "{{ formulario.ubicacion.value | default:''}}"
+
+    />
   </div>
 
   <!-- Teléfono -->
   <div class="mb-4">
-    <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono *</label>
-    <input id="telefono" name="telefono" type="tel" maxlength="20" required
-           pattern="^\+?[0-9\s\-()]{6,20}$"
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-           placeholder="+54 261 123 4567" />
-    <p class="mt-1 text-xs text-gray-500">Formato internacional recomendado. Solo números, espacios, guiones y paréntesis.</p>
+    <label for="telefono" class="block text-sm font-medium text-gray-700"
+      >Teléfono *</label
+    >
+    <input
+      name="telefono"
+      type="tel"
+      maxlength="20"
+      required
+      pattern="^\+?[0-9\s\-()]{6,20}$"
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="+54 261 123 4567"
+      value = "{{ formulario.telefono.value | default:''}}"
+    />
+    <p class="mt-1 text-xs text-gray-500">
+      Formato internacional recomendado. Solo números, espacios, guiones y
+      paréntesis.
+    </p>
   </div>
 
   <!-- Email -->
   <div class="mb-4">
-    <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
-    <input id="email" name="email" type="email" required
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-           placeholder="contacto@bodega.com" />
+    <label for="email" class="block text-sm font-medium text-gray-700"
+      >Email *</label
+    >
+    <input
+      name="email"
+      type="email"
+      required
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="contacto@bodega.com"
+      value = "{{ formulario.email.value | default:''}}"
+    />
   </div>
 
   <!-- Sitio web (opcional) -->
   <div class="mb-4">
-    <label for="sitio" class="block text-sm font-medium text-gray-700">Sitio web</label>
-    <input id="sitio" name="sitio" type="url" placeholder="https://www.bodega.com"
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500" />
+    <label for="sitio" class="block text-sm font-medium text-gray-700"
+      >Sitio web</label
+    >
+    <input
+      name="sitio"
+      type="url"
+      placeholder="https://www.bodega.com"
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      value = "{{ formulario.sitio.value | default:''}}"
+    />
   </div>
 
   <!-- Descripción -->
   <div class="mb-4">
-    <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción *</label>
-    <textarea id="descripcion" name="descripcion" rows="5" required maxlength="2000"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-              placeholder="Breve historia, tipo de uvas, servicios (visitas, degustaciones)"></textarea>
+    <label for="descripcion" class="block text-sm font-medium text-gray-700"
+      >Descripción *</label
+    >
+    <textarea
+      id="descripcion"
+      name="descripcion"
+      rows="5"
+      required
+      maxlength="2000"
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="Breve historia, tipo de uvas, servicios (visitas, degustaciones)"
+      value = "{{ formulario.descripcion.value | default:''}}"
+    ></textarea>
   </div>
 
   <!-- Imagen -->
   <div class="mb-6">
-    <label for="imagen" class="block text-sm font-medium text-gray-700">Imagen de la bodega *</label>
-    <input id="imagen" name="imagen" type="file" accept="image/*" required
-           class="block w-full mt-1 text-sm text-gray-600" />
-    <p class="mt-1 text-xs text-gray-500">Formatos: JPG, PNG. Tamaño máximo recomendado: 2MB.</p>
+    <label for="imagen" class="block text-sm font-medium text-gray-700"
+      >Imagen de la bodega *</label
+    >
+    <input
+      id="imagen"
+      name="imagen"
+      type="file"
+      accept="image/*"
+      required
+      class="block w-full mt-1 text-sm text-gray-600"
+      value = "{{ formulario.imagen.value | default:''}}"
+    />
+    <p class="mt-1 text-xs text-gray-500">
+      Formatos: JPG, PNG. Tamaño máximo recomendado: 2MB.
+    </p>
 
+
+    {% if formulario.imagen.value %}
+    
     <!-- Preview -->
     <div id="preview-container" class="hidden mt-4">
       <p class="mb-2 text-sm text-gray-600">Vista previa:</p>
-      <img id="preview-img" src="#" alt="Vista previa imagen" class="object-cover w-full h-48 rounded-md shadow" />
+        <img
+          src=" {{ formulario.imagen.url.value }}"
+          alt="Vista previa imagen"
+          class="object-cover w-full h-48 rounded-md shadow"
+        />
+      </div>
     </div>
-  </div>
+    
+    {% endif %}
+    
 
   <!-- Acciones -->
   <div class="flex items-center justify-end gap-3">
-    <button type="reset" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Limpiar</button>
-    <button type="submit" class="px-6 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700">Guardar Bodega</button>
+    <button
+      onclick="history.back()"
+      type="button"
+      class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+    >
+      Cancelar
+    </button>
+    <button
+      type="submit"
+      class="px-6 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700"
+    >
+      Guardar Bodega
+    </button>
   </div>
 </form>
-
-{% endblock %}
