@@ -3,7 +3,6 @@
   action=""
   method="post"
   enctype="multipart/form-data"
-  novalidate
 >
 
 {% csrf_token %}
@@ -141,10 +140,10 @@
     {% if formulario.imagen.value %}
     
     <!-- Preview -->
-    <div class="hidden mt-4">
+    <div class="mt-4">
       <p class="mb-2 text-sm text-gray-600">Vista previa:</p>
         <img
-          src="{{ formulario.imagen.url.value }}"
+          src="{{ formulario.imagen.value.url }}"
           alt="Vista previa imagen"
           class="object-cover w-full h-48 rounded-md shadow"
         />

@@ -3,6 +3,7 @@
 {% block title %} Gestión {% endblock %}
 
 {% block content %}
+<!--Seccion para admnistrar vinos-->
 <section class="container px-4 py-12 mx-auto">
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold">Bodegas</h1>
@@ -11,9 +12,8 @@
     </div>
   </div>
 
- <div class="mb-10 overflow-x-auto bg-white rounded-lg shadow">
+  <div class="mb-10 overflow-x-auto bg-white rounded-lg shadow">
     <table class="min-w-full divide-y divide-gray-200">
-      <caption class="sr-only">Listado de bodegas</caption>
       <thead class="bg-gray-50">
         <tr>
           <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
@@ -70,16 +70,16 @@
     </table>
   </div>
 
+  <!--Seccion para administrar Vinos-->
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold">Vinos</h1>
     <div>
-      <button onclick="location.href='#addVino'" class="px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700">Agregar Vino</button>
+      <button class="px-4 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700"><a href="{% url "agregar_vino" %}">Agregar Vino</a></button>
     </div>
   </div>
 
   <div class="overflow-x-auto bg-white rounded-lg shadow">
   <table class="min-w-full divide-y divide-gray-200">
-    <caption class="sr-only">Listado de vinos</caption>
     <thead class="bg-gray-50">
       <tr>
         <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
@@ -111,8 +111,8 @@
         </td>
         <td class="px-4 py-4 text-sm text-center">
           <div class="inline-flex items-center gap-2">
-            <button onclick="editarVino({{ vino.id }})" class="px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700">Editar</button>
-            <button onclick="confirmEliminar('vino', {{ vino.id }})" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">Eliminar</button>
+            <button class="px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700"><a href="{% url "editar_vino" vino.id %}">Editar</a></button>
+            <button class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700"><a href="{% url "eliminar_vino" vino.id %}">Eliminar</a></button>
           </div>
         </td>
       </tr>

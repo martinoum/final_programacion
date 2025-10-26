@@ -1,82 +1,133 @@
-{% extends "base.html" %}
-{% block title %} Vino Formulario {% endblock %}
-
-{% block content %}
-<form id="form-vino" class="max-w-3xl p-6 mx-auto bg-white rounded-lg shadow" action="#" method="post" enctype="multipart/form-data" novalidate>
+<form
+  class="max-w-3xl p-6 mx-auto bg-white rounded-lg shadow"
+  action=""
+  method="post"
+  enctype="multipart/form-data"
+  
+>
+{% csrf_token %}
   <!-- Nombre -->
   <div class="mb-4">
-    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre *</label>
-    <input id="nombre" name="nombre" type="text" maxlength="200" required
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-           placeholder="Nombre del vino" />
+    <label for="nombre" class="block text-sm font-medium text-gray-700"
+      >Nombre *</label
+    >
+    <input
+      name="nombre"
+      type="text"
+      maxlength="200"
+      required
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="Nombre del vino"
+      value="{{ formulario.nombre.value|default:''}} "
+    />
   </div>
 
-  <!-- Bodega (select estático de ejemplo) -->
+  <!-- Bodega -->
   <div class="mb-4">
-    <label for="bodega" class="block text-sm font-medium text-gray-700">Bodega *</label>
-    <select id="bodega" name="bodega" required
-            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500">
-      <option value="">Seleccione una bodega</option>
-      <option value="1">Bodega El Mirador</option>
-      <option value="2">Bodega La Cumbre</option>
-      <option value="3">Bodega San Miguel</option>
-    </select>
+    <label for="bodega" class="block text-sm font-medium text-gray-700"
+      >Bodega *</label
+    >
+    {{ formulario.bodega }} <!--Django genera automaticamente los selects-->
+    
   </div>
 
   <!-- Tipo -->
   <div class="mb-4">
-    <label for="tipo" class="block text-sm font-medium text-gray-700">Tipo *</label>
-    <select id="tipo" name="tipo" required
-            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500">
-      <option value="">Seleccione tipo</option>
-      <option value="Tinto">Tinto</option>
-      <option value="Blanco">Blanco</option>
-      <option value="Rosado">Rosado</option>
-      <option value="Espumoso">Espumoso</option>
-    </select>
+    <label for="tipo" class="block text-sm font-medium text-gray-700"
+      >Tipo *</label
+    >
+    {{ formulario.tipo }}
   </div>
 
   <!-- Varietal -->
   <div class="mb-4">
-    <label for="varietal" class="block text-sm font-medium text-gray-700">Varietal *</label>
-    <input id="varietal" name="varietal" type="text" maxlength="100" required
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-           placeholder="Ej: Malbec, Chardonnay" />
+    <label for="varietal" class="block text-sm font-medium text-gray-700"
+      >Varietal *</label
+    >
+    <input
+      name="varietal"
+      type="text"
+      maxlength="100"
+      required
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="Ej: Malbec, Chardonnay"
+      value="{{ formulario.varietal.value|default:''}} "
+
+    />
   </div>
 
   <!-- Precio -->
   <div class="mb-4">
-    <label for="precio" class="block text-sm font-medium text-gray-700">Precio (ARS) *</label>
-    <input id="precio" name="precio" type="number" min="0" step="0.01" required
-           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-           placeholder="Ej: 1950.00" />
+    <label for="precio" class="block text-sm font-medium text-gray-700"
+      >Precio (ARS) *</label
+    >
+    <input
+      name="precio"
+      type="number"
+      min="0"
+      step="0.01"
+      required
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="Ej: 1950.00"
+      value = "{{ formulario.precio.value|default:'' }}"
+    />
   </div>
 
   <!-- Descripción -->
   <div class="mb-4">
-    <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción *</label>
-    <textarea id="descripcion" name="descripcion" rows="4" required maxlength="2000"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
-              placeholder="Notas de cata, crianza, maridaje, etc."></textarea>
+    <label for="descripcion" class="block text-sm font-medium text-gray-700"
+      >Descripción *</label
+    >
+    <textarea
+      name="descripcion"
+      rows="4"
+      required
+      maxlength="2000"
+      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
+      placeholder="Notas de cata, crianza, maridaje, etc."
+    >{{ formulario.descripcion.value|default:''}}</textarea>
   </div>
 
   <!-- Imagen -->
   <div class="mb-6">
-    <label for="imagen" class="block text-sm font-medium text-gray-700">Imagen del vino *</label>
-    <input id="imagen" name="imagen" type="file" accept="image/*" required
-           class="block w-full mt-1 text-sm text-gray-600" />
-    <p class="mt-1 text-xs text-gray-500">Formatos: JPG, PNG. Tamaño recomendado: ≤ 2MB.</p>
+    <label for="imagen" class="block text-sm font-medium text-gray-700"
+      >Imagen del vino *</label
+    >
+    <input
+      name="imagen"
+      type="file"
+      accept="image/*"
+      class="block w-full mt-1 text-sm text-gray-600"
+    />
+    <p class="mt-1 text-xs text-gray-500">
+      Formatos: JPG, PNG. Tamaño recomendado: ≤ 2MB.
+    </p>
 
-    <div id="preview-container" class="hidden mt-4">
+    {% if formulario.imagen.value %}
+    <div class="mt-4">
       <p class="mb-2 text-sm text-gray-600">Vista previa:</p>
-      <img id="preview-img" src="#" alt="Vista previa imagen" class="object-cover w-full h-48 rounded-md shadow" />
+      <img
+        src="{{ formulario.imagen.value.url }}"
+        alt="Vista previa imagen"
+        class="object-contain w-full h-48 rounded-md shadow"
+      />
     </div>
+    {% endif %}
   </div>
 
   <!-- Acciones -->
   <div class="flex items-center justify-end gap-3">
-    <button type="reset" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Limpiar</button>
-    <button type="submit" class="px-6 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700">Guardar Vino</button>
+    <button
+      class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+    >
+      <a href="{% url "administrar" %}">Cancelar</a>
+    </button>
+    <button
+      type="submit"
+      class="px-6 py-2 text-white rounded-lg bg-amber-600 hover:bg-amber-700"
+    >
+      Guardar Vino
+    </button>
   </div>
 </form>
-{% endblock %}
+

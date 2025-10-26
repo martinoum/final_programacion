@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from bodegaApp.views import about, formulario_vino, inicio, bodegas_lista, vinos_lista, bodega_detalle, vino_detalle, administrar, formulario_bodega,editar_bodega,agregar_bodega,eliminar_bodega,editar_vino,agregar_vino,eliminar_vino
+from bodegaApp.views import about, inicio, bodegas_lista, vinos_lista, bodega_detalle, vino_detalle, administrar,editar_bodega,agregar_bodega,eliminar_bodega,editar_vino,agregar_vino,eliminar_vino
 
 from django.conf import settings #PENDIENTE notion
 from django.contrib.staticfiles.urls import static #PENDIENTE notion
@@ -33,10 +33,11 @@ urlpatterns = [
     path('bodega/detalle/<int:id>/', bodega_detalle, name='bodega_detalle'),
     # Vinos
     path('vinos_lista/', vinos_lista, name='vinos_lista'),
+    path('vino/agregar', agregar_vino,name="agregar_vino"),
+    path('vino/editar/<int:id>', editar_vino,name="editar_vino"),
+    path('vino/eliminar/<int:id>', eliminar_vino,name="eliminar_vino"),
     path('vino/detalle/<int:id>/', vino_detalle, name='vino_detalle'),
     # Otras
     path('administrar/', administrar, name='administrar'),
-    path('bodega/formulario/', formulario_bodega, name='formulario_bodega'),
-    path('vino/formulario/', formulario_vino, name='formulario_vino'),
     path('about/', about, name='about'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #PENDIENTE notion
