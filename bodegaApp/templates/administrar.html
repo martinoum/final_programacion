@@ -21,6 +21,7 @@
           <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Ubicación</th>
           <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Contacto</th>
           <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Sitio</th>
+          <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Detalle</th>
           <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Imagen</th>
           <th class="px-4 py-3 text-xs font-medium text-center text-gray-500 uppercase">Acciones</th>
         </tr>
@@ -40,10 +41,13 @@
           </td>
           <td class="px-4 py-4 text-sm text-gray-700">
             {% if bodega.sitio %}
-            <a href="{{ bodega.sitio }}" target="_blank" rel="noopener" class="text-amber-600 hover:underline">Visitar</a>
+            <a href="{{ bodega. }}" target="_blank" rel="noopener" class="text-amber-600 hover:underline">Visitar</a>
             {% else %}
             <span class="text-xs text-gray-400">—</span>
             {% endif %}
+          </td>
+          <td class="px-4 py-4 text-sm text-gray-700">
+            <a href="{% url "bodega_detalle" bodega.id %}" class="text-sky-600 hover:underline">VER</a>
           </td>
           <td class="px-4 py-4 text-sm">
             {% if bodega.imagen %}
@@ -87,6 +91,7 @@
         <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Bodega</th>
         <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Tipo/Varietal</th>
         <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Precio</th>
+        <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Detalle</th>
         <th class="px-4 py-3 text-xs font-medium text-left text-gray-500 uppercase">Imagen</th>
         <th class="px-4 py-3 text-xs font-medium text-center text-gray-500 uppercase">Acciones</th>
       </tr>
@@ -102,6 +107,9 @@
           <span class="text-xs text-gray-500">{{ vino.varietal }}</span>
         </td>
         <td class="px-4 py-4 text-sm font-semibold text-amber-600">${{ vino.precio }}</td>
+        <td class="px-4 py-4 text-sm text-gray-700">
+            <a href="{% url "vino_detalle" vino.id %}" class="text-sky-600 hover:underline">VER</a>
+          </td>
         <td class="px-4 py-4 text-sm">
           {% if vino.imagen %}
           <img src="{{ vino.imagen.url }}" alt="{{ vino.nombre }}" class="object-contain w-32 h-16 rounded">
